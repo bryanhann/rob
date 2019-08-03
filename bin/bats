@@ -1,0 +1,1 @@
+$BOB/test/libs/bats/bin/bats $*

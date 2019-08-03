@@ -1,0 +1,2 @@
+i
+bash --rcfile rcfile bats $BOB/test/tests
