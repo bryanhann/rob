@@ -1,0 +1,5 @@
+cd $(dirname $0)
+export BOB=$(dirname $PWD)
+export PATH=$BOB/bin:$PATH
+#export "PS1=[$(basename $BOB)] $PS1"
+bash --rcfile $BOB/here/shell.rc

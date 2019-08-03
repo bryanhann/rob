@@ -1,0 +1,3 @@
+#!/bin/bash
+[ ! -v BOB ] && echo \$BOB not initialized && exit 1
+$BOB/test/libs/bats/bin/bats $BOB/test/tests/*.bats
