@@ -1,0 +1,12 @@
+source ./ct.src
+
+ct.init
+
+ct.fail false
+ct.pass true
+ct.pass	[ -d $HOME ]
+ct.fail [ ! -d $HOME ]
+ct.fail [ $(( 3 + 4 )) -eq 5 ]
+ct.pass [ $(( 3 + 4 )) -eq 7 ]
+ct.pass false
+ct.exit
