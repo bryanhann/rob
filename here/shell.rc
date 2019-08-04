@@ -1,10 +1,10 @@
 cd $DIR
 
 export "PS1=[$(basename $BOB)] $PS1"
-target=${BOB}/here/${NEXT}.src
+target=${BOB}/here/src/${NEXT}.src
 if [ -f $target ]; then
 	source $target
 elif [ ! "$NEXT" == "" ]; then
-	echo not found: [${BOB}/here/${NEXT}.src]
+	echo not found: [$target]
 	exit -1
 fi
