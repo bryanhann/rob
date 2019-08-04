@@ -1,5 +1,0 @@
-#source ~/.bashrc
-export BOB=$PWD
-export PATH=$BOB/bin:$PATH
-export "PS1=[$(dirname $PWD)] $PS1"
-echo foobar

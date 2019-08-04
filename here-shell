@@ -1,5 +1,0 @@
-[ ! "$0" == "./here-shell" ] && echo try ./here-shell && exit
-#export BOB=$PWD
-#export PATH=$BOB/bin:$PATH
-#export "PS1=[$(dirname $PWD)] $PS1"
-bash --rcfile ./rcfile $*

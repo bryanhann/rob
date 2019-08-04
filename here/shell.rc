@@ -1,1 +1,8 @@
 export "PS1=[$(basename $BOB)] $PS1"
+target=${BOB}/here/${NEXT}.src
+if [ -f $target ]; then
+	source $target
+elif [ ! "$NEXT" == "" ]; then
+	echo not found: [${BOB}/here/${NEXT}.src]
+	exit -1
+fi
