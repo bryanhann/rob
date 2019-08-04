@@ -1,0 +1,51 @@
+#!/bin/bash
+cd $(dirname $0)
+export ROOT=$(dirname $PWD)
+
+function test_root {
+	[ "$PWD"  == $(./with .pwd      ) ] || return 1
+	[ "$ROOT" == $(./with .root .pwd) ] || return 2
+	[ "$PWD"  == $(./with .pwd      ) ] || return 3
+}
+
+function test_path {
+	OLD=$PATH
+	export PATH="/bin:/usr/bin"
+        with  true             2> /dev/null && return 1
+	../with with true      2> /dev/null && return 2
+	../with .path with true 2> /dev/null || return 3
+	export PATH=$OLD
+}
+
+function test_bats_two_passing_tests {
+ 	./with .root test/libs/bats/bin/bats test/tests-bats/two-passing-tests.bats > /dev/null || return 1
+ 	./with .root .bin bats               test/tests-bats/two-passing-tests.bats > /dev/null || return 2
+	./with .root .path bats              test/tests-bats/two-passing-tests.bats > /dev/null || return 3
+ 	./with .path .root bats              test/tests-bats/two-passing-tests.bats > /dev/null || return 4
+}
+
+function test_bats_two_failing_tests {
+ 	./with .root test/libs/bats/bin/bats test/tests-bats/two-failing-tests.bats > /dev/null && return 1
+ 	./with .root .bin bats               test/tests-bats/two-failing-tests.bats > /dev/null && return 2
+ 	./with .path .root bats              test/tests-bats/two-failing-tests.bats > /dev/null && return 4
+ 	./with .root .path bats              test/tests-bats/two-failing-tests.bats > /dev/null && return 3
+}
+
+function _test {
+	true
+	$1
+       	err=$?
+	if [ $err -eq 0 ]; then
+	       echo [pass] [$err] $1
+	else
+	       echo [fail] [$err] $1
+	       export F=$(( $F + 1 )) 
+	fi
+	return $err
+}
+unset F
+_test test_bats_two_passing_tests 
+#_test test_bats_two_failing_tests  XXX
+_test test_path
+_test test_root
+exit $F

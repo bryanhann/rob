@@ -1,0 +1,48 @@
+#!/bin/bash
+
+function .pwd {
+	echo $(pwd)
+}
+function .selftest {
+	.root .bin test.with
+}
+function .bin {
+	$BOB/bin/$*
+}
+function .path {
+	OLD=$PATH
+	export PATH=$BOB/bin:$PATH
+	$*
+	err=$?
+	export PATH=$OLD
+	return $?
+}
+function .root {
+	pushd . > /dev/null
+	cd $BOB
+	$*
+	err=$?
+	popd > /dev/null
+	return $err
+}   
+###########################################################################
+export -f .path
+export -f .root
+export -f .bin
+export -f .pwd
+###########################################################################
+if [ "$1" == "" ]; then
+	echo "    $0 .path [ARGS]      : run ARGS with \$ROOT/bin on path"
+	echo "    $0 .root [ARGS]      : run ARGS from \$ROOT  dir"
+	echo "    $0 .bin CMD [ARGS]   : run \$ROOT/bin/CMD [ARGS]"
+	echo "    $0 .pwd              : echo current working dir"
+	echo "    $0 .selftest         : run a minimal self-test"
+fi
+###########################################################################
+pushd . > /dev/null
+cd $(dirname $0)
+export BOB=$(dirname $PWD)
+popd > /dev/null
+###########################################################################
+$*
+exit $?
