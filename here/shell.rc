@@ -1,3 +1,5 @@
+cd $DIR
+
 export "PS1=[$(basename $BOB)] $PS1"
 target=${BOB}/here/${NEXT}.src
 if [ -f $target ]; then

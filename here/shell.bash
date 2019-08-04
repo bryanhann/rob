@@ -1,3 +1,4 @@
+export DIR=$PWD
 cd $(dirname $0)
 export BOB=$(dirname $PWD)
 export PATH=$BOB/bin:$PATH
