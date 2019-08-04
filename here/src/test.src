@@ -1,5 +1,0 @@
-#!/bin/bash
-[ "$BOB" == ""  ] && echo \$BOB not initialized && exit 1
-true # need to coerce the error level to 0
-$BOB/test/libs/bats/bin/bats $BOB/test/tests/*.bats
-exit $?

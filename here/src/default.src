@@ -1,8 +1,0 @@
-# KISS. avoid nested shells for now.
-
-if [ "" == "$BOB_SHELL_FLAG" ]; then
-	export BOB_SHELL_FLAG=1
-else
-	echo already in shell
-	exit
-fi
