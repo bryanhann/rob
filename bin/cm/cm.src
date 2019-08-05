@@ -1,0 +1,11 @@
+function cm_path {
+	OLD=$PATH
+	export PATH=$1:$PATH
+	shift
+	$*
+	err=$?
+	export PATH=$OLD
+	return $?
+}
+[ X$1 == X-f ] && export -f cm_path
+

@@ -1,0 +1,11 @@
+function cm_cd {
+	pushd . > /dev/null
+	cd $1
+	shift
+	$*
+	err=$?
+	popd > /dev/null
+	return $err
+}   
+[ X$1 == X-f ] && export -f cm_cd
+
