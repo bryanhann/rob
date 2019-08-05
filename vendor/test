@@ -1,0 +1,9 @@
+rm -rf  ./o
+./vendor.sh bats +bare +repo +bin         > /dev/null
+./vendor.sh bats -bin -bin +bin +bin     >> o
+./vendor.sh bats -repo -repo +repo +repo >> o
+#./vendor.sh bats -bare -bare +bare +bare >> o
+if [ ! -f ./regression.out ]; then
+	cp o ./regression.out
+fi
+diff o ./regression.out && echo pass || echo fail

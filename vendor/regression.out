@@ -1,0 +1,10 @@
+LU    (B[0;4m-bin: deleting: [$HOME/.local/bin/bats](B[m
+LU    (B[0;4m-bin: missing: [$HOME/.local/bin/bats](B[m
+LU    (B[0;4m+bin: writing: [$HOME/.local/bin/bats](B[m
+LU    (B[0;4m+bin: overwriting: [$HOME/.local/bin/bats](B[m
+
+LU    (B[0;4m-repo: removing: [$HOME/.bob/vendor/git-repo/github.com/sstephenson/bats.git](B[m
+LU    (B[0;4m-repo: missing: [$HOME/.bob/vendor/git-repo/github.com/sstephenson/bats.git](B[m
+LU    (B[0;4m+repo: cloning to: [$HOME/.bob/vendor/git-repo/github.com/sstephenson/bats.git](B[m
+LU    (B[0;4m+repo: pre-exists: [$HOME/.bob/vendor/git-repo/github.com/sstephenson/bats.git](B[m
+

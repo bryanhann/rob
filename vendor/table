@@ -1,0 +1,8 @@
+
+nobats   git:    github.com/sstephenson/nobats.git  bin/bats
+bats     https:	github.com/sstephenson/bats.git bin/bats bats
+
+
+
+
+
