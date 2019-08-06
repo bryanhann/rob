@@ -18,17 +18,11 @@ function test_path {
 }
 
 function test_bats_two_passing_tests {
- 	./with .root test/libs/bats/bin/bats test/tests-bats/two-passing-tests.bats > /dev/null || return 1
- 	./with .root .bin bats               test/tests-bats/two-passing-tests.bats > /dev/null || return 2
-	./with .root .path bats              test/tests-bats/two-passing-tests.bats > /dev/null || return 3
- 	./with .path .root bats              test/tests-bats/two-passing-tests.bats > /dev/null || return 4
+ 	./with .root bats test/tests-bats/two-passing-tests.bats > /dev/null || return 1
 }
 
 function test_bats_two_failing_tests {
- 	./with .root test/libs/bats/bin/bats test/tests-bats/two-failing-tests.bats > /dev/null && return 1
- 	./with .root .bin bats               test/tests-bats/two-failing-tests.bats > /dev/null && return 2
- 	./with .path .root bats              test/tests-bats/two-failing-tests.bats > /dev/null && return 4
- 	./with .root .path bats              test/tests-bats/two-failing-tests.bats > /dev/null && return 3
+ 	./with .root bats test/tests-bats/two-failing-tests.bats > /dev/null && return 1
 }
 
 function _test {
