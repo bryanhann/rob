@@ -21,7 +21,6 @@ function -bin {
 	fi
 	$*
 }
-
 function +bin {
 	if [ ! -f ${lu_exe_dst} ]; then
 		note "+bin: writing:"      ${lu_exe_dst} 

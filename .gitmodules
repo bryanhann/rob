@@ -1,3 +1,3 @@
 [submodule "test/libs/bats"]
-	path = test/libs/bats
+	path = test/libs.hide/bats
 	url = https://github.com/sstephenson/bats

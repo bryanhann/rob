@@ -1,0 +1,17 @@
+cd $(dirname $0)
+rm -rf  ./o
+./init > /dev/null
+./vendor.sh bats -bin -bin +bin +bin      >> o
+./vendor.sh bats -repo -repo +repo +repo  >> o
+#./vendor.sh bats -bare -bare +bare +bare >> o
+[ -f ./regression.out ] || cp o ./regression.out
+
+cmp o ./regression.out
+
+if [ $? -eq 0 ]; then
+	echo [pass] $(basename $0)
+	exit 0
+else
+	echo [fail] $(basename $0)
+	exit 1
+fi
