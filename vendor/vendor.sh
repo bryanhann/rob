@@ -1,8 +1,8 @@
 export vendor=${HOME}/.bob/vendor
+
 function rp {
 	echo "$1" | sed "s|^$HOME|\$HOME|"
 }
-
 
 function note {
 	if [ "$2" == "" ]; then
@@ -21,6 +21,7 @@ function -bin {
 	fi
 	$*
 }
+
 function +bin {
 	if [ ! -f ${lu_exe_dst} ]; then
 		note "+bin: writing:"      ${lu_exe_dst} 
@@ -58,6 +59,7 @@ function +bare {
 	fi
 	$*
 }
+
 function -bare {
 	if [ ! -d ${lu_bare} ]; then
 		note "-bare: missing:"      ${lu_bare}
@@ -77,6 +79,7 @@ function +repo {
 	fi
 	$*
 }
+
 function -repo {
 	if [ ! -d ${lu_repo} ]; then
 		note "-repo: missing:"      ${lu_repo}
@@ -86,6 +89,7 @@ function -repo {
 	fi
 	$*
 }
+
 function __main__ {
 	.lu $1 ; shift
 	if [ X${lu_name} == X ]; then

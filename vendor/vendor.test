@@ -1,8 +1,8 @@
 cd $(dirname $0)
 rm -rf  ./o
-./init > /dev/null
-./vendor.sh bats -bin -bin +bin +bin      >> o
-./vendor.sh bats -repo -repo +repo +repo  >> o
+./vendor.init > /dev/null
+./vendor.sh bats -bin -bin +bin +bin      >> o 
+./vendor.sh bats -repo -repo +repo +repo  >> o 2>> /dev/null
 #./vendor.sh bats -bare -bare +bare +bare >> o
 [ -f ./regression.out ] || cp o ./regression.out
 
