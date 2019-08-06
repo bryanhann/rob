@@ -1,6 +1,6 @@
 export vendor=${HOME}/.bob/vendor
 function rp {
-	echo \$HOME/$( python -c "import os.path; print os.path.relpath( \"$1\" , \"$HOME\" )" )
+	echo "$1" | sed "s|^$HOME|\$HOME|"
 }
 
 
