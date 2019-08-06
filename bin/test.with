@@ -42,4 +42,7 @@ _test test_bats_two_passing_tests
 #_test test_bats_two_failing_tests  XXX
 _test test_path
 _test test_root
+[ $F -eq 0 ] &&
+	echo [pass] $(basename $0) ||
+	echo [fail] $(basename $0) 
 exit $F
