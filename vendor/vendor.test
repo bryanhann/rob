@@ -1,17 +1,24 @@
 cd $(dirname $0)
-rm -rf  ./o
+
+# Make sure we are initialized. This will insure a bare repo 
+# for us to clone a local repo from
 ./vendor.init > /dev/null
-./vendor.sh bats -bin -bin +bin +bin      >> o 
-./vendor.sh bats -repo -repo +repo +repo  >> o 2>> /dev/null
-#./vendor.sh bats -bare -bare +bare +bare >> o
-[ -f ./regression.out ] || cp o ./regression.out
 
-cmp o ./regression.out
+# Clone a local local bats because the test will remove the default
+bare=${HOME}/.bob/vendor/git-bare/github.com/sstephenson/bats.git 
+repo=${PWD}/bats.repo.tmp
+git clone ${bare} ${repo}
 
-if [ $? -eq 0 ]; then
-	echo [pass] $(basename $0)
-	exit 0
-else
-	echo [fail] $(basename $0)
-	exit 1
+# Put it on the path
+export PATH=${repo}/bin:${PATH}
+
+# Run the tests
+bats ./tests/test-main.bats
+
+# expensive test
+if [[ X$1 == X-f ]]; then
+	bats ./tests/test-bare.bats
 fi
+
+# Cleanup
+rm -rf ${repo}
